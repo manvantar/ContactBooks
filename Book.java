@@ -76,9 +76,29 @@ public class Book {
         }
 
     private static void addNewContact() {
-        AddressBookMain address = new AddressBookMain();
-        contactlist.add(address.CreateContact());
-        printContactList();
+    AddressBookMain address = new AddressBookMain();
+        Contact temp=address.CreateContact();
+        int bit_add=0;
+        if (contactlist.size() > 0) {
+            int i=0;
+            while( i < contactlist.size() && bit_add==0){
+                Contact v = contactlist.get(i);
+
+                if ((temp.firstname+temp.lastname).equals(v.firstname+v.lastname)) {
+                    bit_add=1;
+                    System.out.println("name available Present duplicate not allowed");
+                }
+                i++;
+
+            }
+            if(bit_add==0){
+                contactlist.add(temp);
+            }
+        }
+        else {
+            contactlist.add(temp);
+        }
+
     }
 
     private static void updateContact() {
