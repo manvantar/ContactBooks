@@ -138,6 +138,10 @@ public class Book {
     public List<Contact> checkContactByCityStream(String sample_city) {
         List<Contact> contactsByCity = contactlist.stream().filter(contac -> contac.city.equals(sample_city))
                 .collect(Collectors.toList());
+        Iterator<Contact> contactIterator=contactsByCity.iterator();
+        while(contactIterator.hasNext()){
+            System.out.println(contactIterator.next().firstname);
+        }
         return contactsByCity;
     }
 
@@ -149,6 +153,10 @@ public class Book {
     public List<Contact> checkContactByStateStream(String sample_state) {
         List<Contact> contactsByState = contactlist.stream().filter(contac -> contac.state.equals(sample_state))
                 .collect(Collectors.toList());
+        Iterator<Contact> contactIterator=contactsByState.iterator();
+        while(contactIterator.hasNext()){
+            System.out.println(contactIterator.next().firstname);
+        }
         return contactsByState;
     }
 
