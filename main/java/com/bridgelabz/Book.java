@@ -130,6 +130,28 @@ public class Book {
                 .orElse(null);
     }
 
+        /* This method is used to search the contact by name of city, only  if exists in the contact book
+    @param takes city
+    @return list of contact value true
+     */
+
+    public List<Contact> checkContactByCityStream(String sample_city) {
+        List<Contact> contactsByCity = contactlist.stream().filter(contac -> contac.city.equals(sample_city))
+                .collect(Collectors.toList());
+        return contactsByCity;
+    }
+
+    /* This method is used to search the contact by name of state, only  if exists in the contact book
+    @param takes state
+    @return list of contact value true
+     */
+
+    public List<Contact> checkContactByStateStream(String sample_state) {
+        List<Contact> contactsByState = contactlist.stream().filter(contac -> contac.state.equals(sample_state))
+                .collect(Collectors.toList());
+        return contactsByState;
+    }
+
 
 }
 
