@@ -94,7 +94,10 @@ public class Book {
         System.out.println("You have " + contactlist.size() + " contacts in your list");
         for (int i = 0; i < contactlist.size(); i++) {
             Contact v = contactlist.get(i);
-            System.out.println(v.firstname + "\n" + v.lastname + "\n" + v.PhoneNumber + "\n" + v.email + "\n" + v.city + "\n" + v.state + "\n" + v.zip);
+            System.out.println("First_name :"+v.firstname + "\n" +"Last_name :"+ v.lastname + "\n" +
+                    "Phone_number :"+v.PhoneNumber + "\n" +"emailID :"+ v.email + "\n" +"City :"+ v.city + "\n"
+                    +"State :"+v.state + "\n" +"Zip :"+ v.zip);
+            System.out.println("================================");
         }
     }
 
