@@ -78,6 +78,15 @@ public class AddressBookTester {
         Assertions.assertEquals(1,stateList2.size());
     }
 
-
+    @Test
+    public void givenStateToSearch_whenExists_shouldReturnNumberOfContactsForState(){
+        Book book=new Book();
+        book.addNewContact(contact1);
+        book.addNewContact(contact3);
+        book.addNewContact(contact2);
+        book.addNewContact(contact4);
+       Assertions.assertEquals(3,book.checkContactlengthByStateStream("Karnataka"));
+       Assertions.assertEquals(2,book.checkContactlengthByCityStream("Bengaluru"));
+    }
 
 }
