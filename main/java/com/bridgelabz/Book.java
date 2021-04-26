@@ -160,6 +160,28 @@ public class Book {
         return contactsByState;
     }
 
+    /* This method is used get the count of contact by name of city,
+    @param takes state
+    @return size
+     */
+    public int checkContactlengthByCityStream(String sample_city) {
+        List<Contact> contactsByCity = contactlist.stream().filter(contac -> contac.city.equals(sample_city))
+                .collect(Collectors.toList());
+        int leng=contactsByCity.size();
+        return leng;
+    }
+
+    /* This method is used get the count of contact by name of state,
+   @param takes state
+   @return size
+    */
+    public int checkContactlengthByStateStream(String sample_state) {
+        List<Contact> contactsByState = contactlist.stream().filter(contac -> contac.state.equals(sample_state))
+                .collect(Collectors.toList());
+        int leng=contactsByState.size();
+        return leng;
+    }
+
 
 }
 
