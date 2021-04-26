@@ -15,6 +15,8 @@ public class AddressBookTester {
             560076,"9663393660","srinivar@gmail.com");
     Contact contact3=new Contact("inivar",null,"Mysuru","Karnataka",
             560076,"9663393660","nivar@gmail.com");
+    Contact contact4=new Contact("iar",null,"Vizak","Andhra",
+            780076,"966323230","iar@gmail.com");
 
 
     @Test
@@ -62,5 +64,17 @@ public class AddressBookTester {
         Assertions.assertEquals(1,cityList2.size());
     }
 
+    @Test
+    public void givenStateToSearch_whenExists_shouldReturnContactList(){
+        Book book=new Book();
+        book.addNewContact(contact1);
+        book.addNewContact(contact3);
+        book.addNewContact(contact2);
+        book.addNewContact(contact4);
+        List<Contact> stateList=book.checkContactByStateStream("Karnataka");
+        List<Contact> stateList2=book.checkContactByStateStream("Andhra");
+        Assertions.assertEquals(3,stateList.size());
+        Assertions.assertEquals(1,stateList2.size());
+    }
 
 }
