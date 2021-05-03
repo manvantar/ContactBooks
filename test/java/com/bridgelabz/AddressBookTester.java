@@ -5,7 +5,14 @@ import com.bridgelabz.Book;
 import com.bridgelabz.Contact;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import java.io.IOException;
 import java.util.List;
 
 public class AddressBookTester {
@@ -85,8 +92,24 @@ public class AddressBookTester {
         book.addNewContact(contact3);
         book.addNewContact(contact2);
         book.addNewContact(contact4);
-       Assertions.assertEquals(3,book.checkContactlengthByStateStream("Karnataka"));
-       Assertions.assertEquals(2,book.checkContactlengthByCityStream("Bengaluru"));
+        Assertions.assertEquals(3,book.checkContactlengthByStateStream("Karnataka"));
+        Assertions.assertEquals(2,book.checkContactlengthByCityStream("Bengaluru"));
     }
+
+    @Test
+    public void givenContactsData_whenWrittenUsingJson_shouldReturnTure() throws IOException {
+        Book book=new Book();
+        book.addNewContact(contact1);
+        book.addNewContact(contact3);
+        book.addNewContact(contact2);
+        book.addNewContact(contact4);
+        String fileName="/home/mkv/contacts.json";
+        File file = new File(fileName);
+        if(file.exists()){
+            file.delete();
+        }
+        boolean result=book.writeToFileJson(fileName);
+        Assertions.assertTrue(file.exists());
+        }
 
 }

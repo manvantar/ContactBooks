@@ -1,10 +1,19 @@
 package com.bridgelabz;
 
+import netscape.javascript.JSObject;
+import org.json.simple.JSONObject;
+
+
+import java.io.BufferedWriter;
+import java.io.File;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.io.FileWriter;
+import java.io.IOException;
+
 
 public class Book {
     static ArrayList<Contact> contactlist = new ArrayList<Contact>();
@@ -185,6 +194,43 @@ public class Book {
         return leng;
     }
 
+    /* This method is used write JSonFile,
+    @param takes filename
+    @return bollean value
+    */
+    public boolean writeToFileJson(String fileName) throws IOException {
+        for (int i = 0; i < contactlist.size(); i++) {
+            Contact contact = contactlist.get(i);
+            JSONObject jsObject=new JSONObject();
+            JSONObject obj=new JSONObject();
+            jsObject.put("id",i);
+            jsObject.put("firstname",contact.firstname);
+            jsObject.put("lastname",contact.lastname);
+            jsObject.put("phoneNumber",contact.PhoneNumber);
+            jsObject.put("city",contact.city);
+            jsObject.put("state",contact.state);
+            jsObject.put("zip",contact.zip);
+            jsObject.put("email",contact.email);
+            BufferedWriter fileWriter=new BufferedWriter(new FileWriter(fileName, true));
+            try {
+               char doubleQuotes='"';
+               if(i==0)
+                   fileWriter.append("{ "+ doubleQuotes+"contact"+doubleQuotes+":[");
+               fileWriter.append(jsObject.toJSONString());
 
+               if(i<contactlist.size()-1)
+                  fileWriter.append(",\n");
+               if(i==contactlist.size()-1)
+                  fileWriter.append("]}");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            finally {
+                fileWriter.flush();
+                fileWriter.close();
+            }
+        }
+        return true;
+    }
 }
 
